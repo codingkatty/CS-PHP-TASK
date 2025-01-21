@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nosifer&display=swap');
+
+body {
+    background-color: #0a0a0a;
+    color: #ff0000;
+    font-family: 'Creepster', cursive;
+    margin: 0;
+    overflow: hidden;
+    background: linear-gradient(to bottom, #000000, #1a0000);
+}
+
+h1 {
+    font-family: 'Nosifer', cursive;
+    font-size: 4em;
+    text-align: center;
+    color: #ff0000;
+    text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #800000;
+    animation: flicker 3s infinite;
+}
+
+.door {
+    width: 200px;
+    height: 300px;
+    margin: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    background-color: #2a1810;
+    border: 10px solid #1a0f0a;
+    color: #ff0000;
+    text-align: center;
+    padding-top: 130px;
+    font-size: 24px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    box-shadow: 0 0 20px rgba(0,0,0,0.8), inset 0 0 50px rgba(0,0,0,0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+.door:hover {
+    transform: scale(1.1) rotate(1deg);
+    background-color: #3a1810;
+    box-shadow: 0 0 30px rgba(255,0,0,0.6), inset 0 0 50px rgba(255,0,0,0.3);
+    color: #ffffff;
+    text-shadow: 0 0 10px #ff0000;
+}
+
+.door::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, #000, transparent);
+    opacity: 0.3;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: radial-gradient(circle, #1a1a1a 0%, #000 100%);
+    position: relative;
+}
+
+.container::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="f"><feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="3"/><feDisplacementMap in="SourceGraphic" scale="30"/></filter><rect width="100%" height="100%" filter="url(%23f)"/></svg>');
+    opacity: 0.3;
+    pointer-events: none;
+    animation: fog 20s linear infinite;
+}
+
+@keyframes flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+    25%, 75% { opacity: 0.9; }
+}
+
+@keyframes fog {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(100%); }
+}
+
+.door:nth-child(1) { animation: shake 5s infinite; }
+.door:nth-child(2) { animation: shake 6s infinite; }
+.door:nth-child(3) { animation: shake 4s infinite; }
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    95% { transform: translateX(0); }
+    96% { transform: translateX(-3px) rotate(-1deg); }
+    97% { transform: translateX(3px) rotate(1deg); }
+    98% { transform: translateX(-3px) rotate(-1deg); }
+    99% { transform: translateX(3px) rotate(1deg); }
+}
